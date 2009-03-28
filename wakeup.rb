@@ -2,9 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'activerecord'
 
-ActiveRecord::Base.establish_connection( 
-  :adapter=>"sqlite3", :database=>"blog.sqlite3.db"
-)
+ActiveRecord::Base.establish_connection(:adapter=>"sqlite3", :database=>"blog.sqlite3.db")
 
 class Post < ActiveRecord::Base
   has_many :comments
@@ -40,10 +38,7 @@ get '/rss' do
 				xml.title "Rubysztán"
 				xml.description "Minden ami Ruby."
 				xml.link "http://0.0.0.0:4567/"
-				xml.atom :link, 
-												:href	=>	"http://0.0.0.0:4567/rss",
-												:rel	=>	"self",
-												:type	=>	"application/rss+xml"
+				xml.atom :link, :href	=>	"http://0.0.0.0:4567/rss", :rel	=>	"self",	:type	=>	"application/rss+xml"
 			
 				@posts.each do |post|
 					xml.item do
